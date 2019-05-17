@@ -5,14 +5,11 @@ import com.jayway.jsonpath.InvalidPathException;
 import com.jayway.jsonpath.Predicate;
 import com.jayway.jsonpath.internal.CharacterIndex;
 import static com.jayway.jsonpath.internal.filter.ValueNodes.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class FilterCompiler  {
-    private static final Logger logger = LoggerFactory.getLogger(FilterCompiler.class);
 
     private static final char DOC_CONTEXT = '$';
     private static final char EVAL_CONTEXT = '@';
@@ -217,7 +214,6 @@ public class FilterCompiler  {
             throw new InvalidPathException("Expected logical operator");
         }
         filter.incrementPosition(logicalOperator.length());
-        logger.trace("LogicalOperator from {} to {} -> [{}]", begin, end, logicalOperator);
 
         return LogicalOperator.fromString(logicalOperator.toString());
     }
@@ -236,7 +232,6 @@ public class FilterCompiler  {
         }
 
         CharSequence operator = filter.subSequence(begin, filter.position());
-        logger.trace("Operator from {} to {} -> [{}]", begin, filter.position()-1, operator);
         return RelationalOperator.fromString(operator.toString());
     }
 
@@ -245,7 +240,6 @@ public class FilterCompiler  {
         if(filter.currentChar() == NULL && filter.inBounds(filter.position() + 3)){
             CharSequence nullValue = filter.subSequence(filter.position(), filter.position() + 4);
             if("null".equals(nullValue.toString())){
-                logger.trace("NullLiteral from {} to {} -> [{}]", begin, filter.position()+3, nullValue);
                 filter.incrementPosition(nullValue.length());
                 return ValueNode.createNullNode();
             }
@@ -269,7 +263,6 @@ public class FilterCompiler  {
             filter.setPosition(closingIndex + 1);
         }
         CharSequence json = filter.subSequence(begin, filter.position());
-        logger.trace("JsonLiteral from {} to {} -> [{}]", begin, filter.position(), json);
         return ValueNode.createJsonNode(json);
 
     }
@@ -289,7 +282,6 @@ public class FilterCompiler  {
             filter.setPosition(closingIndex + 1);
         }
         CharSequence pattern = filter.subSequence(begin, filter.position());
-        logger.trace("PatternNode from {} to {} -> [{}]", begin, filter.position(), pattern);
         return ValueNode.createPatternNode(pattern);
     }
 
@@ -303,7 +295,6 @@ public class FilterCompiler  {
             filter.setPosition(closingSingleQuoteIndex + 1);
         }
         CharSequence stringLiteral = filter.subSequence(begin, filter.position());
-        logger.trace("StringLiteral from {} to {} -> [{}]", begin, filter.position(), stringLiteral);
         return ValueNode.createStringNode(stringLiteral, true);
     }
 
@@ -314,7 +305,6 @@ public class FilterCompiler  {
             filter.incrementPosition(1);
         }
         CharSequence numberLiteral = filter.subSequence(begin, filter.position());
-        logger.trace("NumberLiteral from {} to {} -> [{}]", begin, filter.position(), numberLiteral);
         return ValueNode.createNumberNode(numberLiteral);
     }
 
@@ -330,7 +320,6 @@ public class FilterCompiler  {
             throw new InvalidPathException("Expected boolean literal");
         }
         filter.incrementPosition(boolValue.length());
-        logger.trace("BooleanLiteral from {} to {} -> [{}]", begin, end, boolValue);
 
         return ValueNode.createBooleanNode(boolValue);
     }

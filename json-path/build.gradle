@@ -12,7 +12,6 @@ jar {
 
 dependencies {
     compile libs.jsonSmart
-    compile libs.slf4jApi
     compile libs.jacksonDatabind, optional
     compile libs.gson, optional
     compile libs.jsonOrg, optional

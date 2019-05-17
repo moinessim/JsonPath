@@ -14,3 +14,6 @@ gradle.properties
 build
 bin/
 out/
+.vscode/launch.json
+.vscode/settings.json
+result

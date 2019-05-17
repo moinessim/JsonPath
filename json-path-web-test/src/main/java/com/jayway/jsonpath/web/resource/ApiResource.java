@@ -5,8 +5,6 @@ import com.jayway.jsonpath.web.bench.Bench;
 import com.jayway.jsonpath.web.bench.Result;
 import net.minidev.json.JSONStyle;
 import net.minidev.json.JSONValue;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
@@ -27,7 +25,6 @@ import java.util.ResourceBundle;
 @Produces(MediaType.TEXT_HTML)
 public class ApiResource {
 
-    private static final Logger logger = LoggerFactory.getLogger(ApiResource.class);
 
     static {
         JSONValue.COMPRESSION = JSONStyle.LT_COMPRESS;

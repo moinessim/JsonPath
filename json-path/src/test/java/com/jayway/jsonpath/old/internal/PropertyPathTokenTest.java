@@ -5,8 +5,6 @@ import com.jayway.jsonpath.JsonPath;
 import com.jayway.jsonpath.Option;
 import com.jayway.jsonpath.PathNotFoundException;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
@@ -15,7 +13,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class PropertyPathTokenTest {
 
-    private static final Logger logger = LoggerFactory.getLogger(PropertyPathTokenTest.class);
 
     private String SIMPLE_MAP = "{\n" +
             "   \"foo\" : \"foo-val\",\n" +

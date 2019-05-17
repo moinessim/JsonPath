@@ -21,8 +21,6 @@ import com.jayway.jsonpath.internal.path.PredicateContextImpl;
 import com.jayway.jsonpath.spi.json.JsonProvider;
 import net.minidev.json.parser.JSONParser;
 import net.minidev.json.parser.ParseException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Moved these nodes out of the ValueNode abstract class.
@@ -566,7 +564,6 @@ public interface ValueNodes {
 
     class PathNode extends ValueNode {
 
-        private static final Logger logger = LoggerFactory.getLogger(PathNode.class);
 
         private final Path path;
         private final boolean existsCheck;
@@ -584,7 +581,6 @@ public interface ValueNodes {
             this.path = path;
             this.existsCheck = existsCheck;
             this.shouldExist = shouldExist;
-            logger.trace("PathNode {} existsCheck: {}", path, existsCheck);
         }
 
         public Path getPath() {

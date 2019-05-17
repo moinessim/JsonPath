@@ -5,8 +5,6 @@ import com.jayway.jsonpath.Configurations;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import static com.jayway.jsonpath.JsonPath.using;
 import static org.junit.Assert.assertTrue;
@@ -16,12 +14,10 @@ import static org.junit.Assert.assertTrue;
  */
 @RunWith(Parameterized.class)
 public class NestedFunctionTest extends BaseFunctionTest {
-    private static final Logger logger = LoggerFactory.getLogger(NumericPathFunctionTest.class);
 
     private Configuration conf = Configurations.GSON_CONFIGURATION;
 
     public NestedFunctionTest(Configuration conf) {
-        logger.debug("Testing with configuration {}", conf.getClass().getName());
         this.conf = conf;
     }
 

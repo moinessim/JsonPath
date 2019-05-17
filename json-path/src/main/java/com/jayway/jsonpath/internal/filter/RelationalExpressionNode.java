@@ -1,11 +1,7 @@
 package com.jayway.jsonpath.internal.filter;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 public class RelationalExpressionNode extends ExpressionNode {
 
-    private static final Logger logger = LoggerFactory.getLogger(RelationalExpressionNode.class);
 
     private final ValueNode left;
     private final RelationalOperator relationalOperator;
@@ -16,7 +12,6 @@ public class RelationalExpressionNode extends ExpressionNode {
         this.relationalOperator = relationalOperator;
         this.right = right;
 
-        logger.trace("ExpressionNode {}", toString());
     }
 
     @Override

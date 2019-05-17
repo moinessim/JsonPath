@@ -21,14 +21,11 @@ import com.jayway.jsonpath.internal.Path;
 import com.jayway.jsonpath.internal.PathRef;
 import com.jayway.jsonpath.internal.function.ParamType;
 import com.jayway.jsonpath.internal.function.Parameter;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 
 public class CompiledPath implements Path {
 
-    private static final Logger logger = LoggerFactory.getLogger(CompiledPath.class);
 
     private final RootPathToken root;
 
@@ -89,9 +86,6 @@ public class CompiledPath implements Path {
 
     @Override
     public EvaluationContext evaluate(Object document, Object rootDocument, Configuration configuration, boolean forUpdate) {
-        if (logger.isDebugEnabled()) {
-            logger.debug("Evaluating path: {}", toString());
-        }
 
         EvaluationContextImpl ctx = new EvaluationContextImpl(this, rootDocument, configuration, forUpdate);
         try {

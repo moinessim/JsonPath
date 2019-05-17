@@ -26,9 +26,6 @@ import com.jayway.jsonpath.TypeRef;
 import com.jayway.jsonpath.spi.cache.Cache;
 import com.jayway.jsonpath.spi.cache.CacheProvider;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.LinkedList;
 import java.util.List;
 
@@ -38,8 +35,6 @@ import static com.jayway.jsonpath.internal.Utils.notNull;
 import static java.util.Arrays.asList;
 
 public class JsonContext implements DocumentContext {
-
-    private static final Logger logger = LoggerFactory.getLogger(JsonContext.class);
 
     private final Configuration configuration;
     private final Object json;
@@ -130,11 +125,6 @@ public class JsonContext implements DocumentContext {
     @Override
     public DocumentContext set(JsonPath path, Object newValue) {
         List<String> modified = path.set(json, newValue, configuration.addOptions(Option.AS_PATH_LIST));
-        if (logger.isDebugEnabled()) {
-            for (String p : modified) {
-                logger.debug("Set path {} new value {}", p, newValue);
-            }
-        }
         return this;
     }
 
@@ -158,11 +148,6 @@ public class JsonContext implements DocumentContext {
     @Override
     public DocumentContext delete(JsonPath path) {
         List<String> modified = path.delete(json, configuration.addOptions(Option.AS_PATH_LIST));
-        if (logger.isDebugEnabled()) {
-            for (String p : modified) {
-                logger.debug("Delete path {}", p);
-            }
-        }
         return this;
     }
 
@@ -174,11 +159,6 @@ public class JsonContext implements DocumentContext {
     @Override
     public DocumentContext add(JsonPath path, Object value) {
         List<String> modified = path.add(json, value, configuration.addOptions(Option.AS_PATH_LIST));
-        if (logger.isDebugEnabled()) {
-            for (String p : modified) {
-                logger.debug("Add path {} new value {}", p, value);
-            }
-        }
         return this;
     }
 
@@ -195,22 +175,12 @@ public class JsonContext implements DocumentContext {
     @Override
     public DocumentContext renameKey(JsonPath path, String oldKeyName, String newKeyName) {
         List<String> modified = path.renameKey(json, oldKeyName, newKeyName, configuration.addOptions(Option.AS_PATH_LIST));
-        if (logger.isDebugEnabled()) {
-            for (String p : modified) {
-                logger.debug("Rename path {} new value {}", p, newKeyName);
-            }
-        }
         return this;
     }
 
     @Override
     public DocumentContext put(JsonPath path, String key, Object value) {
         List<String> modified = path.put(json, key, value, configuration.addOptions(Option.AS_PATH_LIST));
-        if (logger.isDebugEnabled()) {
-            for (String p : modified) {
-                logger.debug("Put path {} key {} value {}", p, key, value);
-            }
-        }
         return this;
     }
 
