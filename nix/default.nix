@@ -1,13 +1,7 @@
-{
-  version?"2.4.0",
-  name?"JsonPath",
-  updateVsCodeSettingsFile?true,
-  shellHook?"",
-  additionalBuildInputs?[]
-}:
-with import <nixpkgs> {};
+ with import ./nixpkgs.nix;
 let 
-  ps1903 = import ./nixpkgs.nix;
+  updateVsCodeSettingsFile=true;
+  # ps1903 = import ./nixpkgs.nix;
   #VSCode Settings file
   #relative path from nix folder
   vscodeSettingsFile = builtins.toString ../.vscode/settings.json;
@@ -27,13 +21,13 @@ let
 
 in
 stdenv.mkDerivation {
-  name = name;
-  version = version;
+  name = "JsonPath";
+  version = "2.4.0";
   src = ../.;
   buildInputs = [
     jdk
     gradle_4_10
-  ]++additionalBuildInputs;
+  ];
 
   buildPhase = ''
     echo "Temp folder: " $(pwd)
@@ -54,6 +48,6 @@ stdenv.mkDerivation {
 
   shellHook=''
     ${vscodeUpdateSettingsCmd}
-  ''+shellHook;
+  '';
 }
 
