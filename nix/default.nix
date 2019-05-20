@@ -1,5 +1,5 @@
 {
-  version?"0.0.0",
+  version?"2.4.0",
   name?"JsonPath",
   updateVsCodeSettingsFile?true,
   shellHook?"",
@@ -36,16 +36,20 @@ stdenv.mkDerivation {
   ]++additionalBuildInputs;
 
   buildPhase = ''
+    echo "Temp folder: " $(pwd)
+    echo "Building JsonPath..."
     rm -rf json-path/build
     rm -rf json-path-assert/build
     rm -rf json-path-web-test/build
-    gradle jar
+    gradle -g $(pwd) jar
   '';
   installPhase = ''
+    echo "Installing JsonPath..."
     mkdir -p $out
     cp json-path/build/libs/json-path-2.4.0.jar $out
     cp json-path-assert/build/libs/json-path-assert-2.4.0.jar $out
     cp json-path-web-test/build/libs/json-path-web-test-2.4.0.jar $out
+    echo "JsonPath jars can be found here:" $out
   '';
 
   shellHook=''
