@@ -17,3 +17,7 @@ out/
 .vscode/launch.json
 .vscode/settings.json
 result
+daemon/
+caches/
+native/
+notifications/
